@@ -92,8 +92,7 @@ public class Main {
         Terminals terminals = new Terminals(tokenTypes);
         Tokenizer tokenizer = new Tokenizer(terminals);
         try{
-            tokenizer.tokenize(text);
-            tokenizer.printTokens();
+            System.out.println("Tokens: " + tokenizer.tokenize(text));
         }
         catch (RuntimeException e){
             System.out.println(e.getMessage());

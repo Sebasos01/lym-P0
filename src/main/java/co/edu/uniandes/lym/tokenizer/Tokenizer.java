@@ -1,24 +1,19 @@
 package co.edu.uniandes.lym.tokenizer;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedList;
 import java.util.Optional;
 
 public class Tokenizer {
     private final Terminals terminals;
 
-    private final List<Token> tokens;
+    private final LinkedList<Token> tokens;
 
     public Tokenizer(Terminals terminals){
         this.terminals = terminals;
-        tokens = new ArrayList<>();
+        tokens = new LinkedList<>();
     }
 
-    public void printTokens(){
-        System.out.println("Tokens: " + tokens);
-    }
-
-    public void tokenize(TextReader textReader){
+    public LinkedList<Token> tokenize(TextReader textReader){
         Optional<String> chr = textReader.getNextChar();
         String token = "";
         while (chr.isPresent()){
@@ -34,6 +29,7 @@ public class Tokenizer {
         }
         if (terminals.isMatch(token)) tokens.add(terminals.createToken(token));
         else { throw new RuntimeException("INVALID INPUT"); }
+        return tokens;
     }
 
 }
